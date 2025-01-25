@@ -37,10 +37,11 @@ export default function CollectionsCard({ product }) {
     }
   };
 
+  const BASE_URL = `${import.meta.env.VITE_API_URL}/uploads/`;
   return (
     <div className="bg-white shadow-md overflow-hidden  hover:bg-gray-100">
       <img
-        src={`http://localhost:5000${image}`}
+        src={`${BASE_URL}${image}`}
         alt={name}
         className="w-[380px] h-72 object-cover"
       />
