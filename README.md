@@ -1,6 +1,6 @@
 <h1 align="center">Hakomerch - Product Store 🚀</h1>
 
-![Demo App](/frontend/public/screenshot-for-readme.png)
+![Demo App](/frontend/public/demo.png)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-v16.0.0-green" alt="Node.js">
