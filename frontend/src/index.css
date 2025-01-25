@@ -1,0 +1,19 @@
+:root {
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  @apply bg-white text-[#1e1e1e];
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #1e1e1e;
+    background-color: #ffffff;
+  }
+}
