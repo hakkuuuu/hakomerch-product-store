@@ -29,11 +29,11 @@
 ### **1. Clone the Repository**
 
 ```bash
-git clone https://github.com/yourusername/product-store.git
-cd product-store
+git clone https://github.com/hakkuuuu/hakomerch-product-store.git
+cd hakomerch-product-store
 ```
 
-### **2. Install npm packages**
+### **2. Install backend and frontend dependencies**
 
 ```bash
 
@@ -42,7 +42,7 @@ npm install
 
 cd FE
 npm .\frontend\
-
+npm install
 ```
 
 ### **3. Setup .env file**
@@ -51,12 +51,26 @@ npm .\frontend\
 
 MONGO_URI=your_mongo_connection_string
 PORT=5000
-
+Replace your_mongo_connection_string with your MongoDB connection string (e.g., from MongoDB Atlas).
 
 ```
 
 ### **4. Start the app**
 
 ```bash
+# Start the backend
+cd backend
 npm run dev
+
+# Start the frontend
+cd ../frontend
+npm start
+
+The backend will run on http://localhost:5000, and the frontend will be available at http://localhost:5173.
 ```
+## 🔧 Notes
+- Ensure your MongoDB database is running and accessible.
+- If using MongoDB Atlas, whitelist your IP address in the Atlas dashboard.
+
+## 📝 License
+This project is licensed under the MIT License. You are free to use, modify, and redistribute this project in any way you want.
