@@ -38,6 +38,9 @@ export default function CollectionsCard({ product }) {
   };
 
   const BASE_URL = `${import.meta.env.VITE_API_URL}/uploads/`;
+  console.log('envvalue', import.meta.env.VITE_API_URL);
+  console.log(`'Base URL and image' ${BASE_URL}${image}`);
+
   return (
     <div className="bg-white shadow-md overflow-hidden  hover:bg-gray-100">
       <img
