@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { ToastContainer } from 'react-toastify';
 import CollectionsPage from './pages/CollectionsPage';
+import EditPage from './pages/EditPage';
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/create" element={<CreatePage />}></Route>
         <Route path="/collections" element={<CollectionsPage />}></Route>
+        <Route path="/edit/:id" element={<EditPage />} />
       </Routes>
       <Footer />
     </>

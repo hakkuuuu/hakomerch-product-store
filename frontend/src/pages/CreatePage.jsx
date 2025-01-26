@@ -18,7 +18,7 @@ const Create = () => {
   const handleNewProduct = async () => {
     setIsLoading(true); // Start the loading state.
     console.log(newProduct);
-    const { success, message } = await createProduct(newProduct); // Call Zustand store.
+    const { success, message } = await createProduct(newProduct);
 
     // Display toast notifications based on the response.
     if (success) {
@@ -45,7 +45,7 @@ const Create = () => {
   };
 
   return (
-    <div id="about" className="flex flex-col items-center justify-center pt-32">
+    <div className="flex flex-col items-center justify-center pt-32">
       <h2 className="text-center text-2xl">Create New Product</h2>
 
       <div className="w-full lg:w-1/2 bg-white p-10 shadow-lg mt-6">
@@ -87,17 +87,22 @@ const Create = () => {
           {/* Category */}
           <div>
             <label className="block text-gray-800 font-medium">Category</label>
-            <input
+            <select
               required
-              type="text"
-              name="category"
               value={newProduct.category}
-              placeholder="Select a category"
               onChange={(e) =>
                 setNewProduct({ ...newProduct, category: e.target.value })
               }
               className="w-full border border-gray-400 bg-white px-4 py-3 mt-3"
-            />
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              <option value="album">Album</option>
+              <option value="photcard">Photcard</option>
+              <option value="lightstick">Lightstick</option>
+              <option value="magazine">Magazine</option>
+            </select>
           </div>
 
           {/* Image */}
