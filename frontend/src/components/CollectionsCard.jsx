@@ -37,8 +37,7 @@ export default function CollectionsCard({ product }) {
     }
   };
 
-  const BASE_URL = `${import.meta.env.VITE_API_URL}/uploads/`;
-  console.log('envvalue', import.meta.env.VITE_API_URL);
+  const BASE_URL = `https://hakomerch-product-store.onrender.com`;
   console.log(`'Base URL and image' ${BASE_URL}${image}`);
 
   return (
