@@ -23,7 +23,7 @@ const Hero = () => {
         </a>
         <a
           href="/collections"
-          className="px-10 py-3 border border-gray-900 hover:bg-lightHover flex item-center gap-2"
+          className="px-10 py-3 border border-gray-900 hover:bg-gray-200 flex item-center gap-2"
         >
           Browse Collections
         </a>

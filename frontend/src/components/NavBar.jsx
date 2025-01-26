@@ -45,7 +45,7 @@ const NavBar = () => {
         <div className="flex items-center gap-2">
           <a
             href="/create"
-            className="hidden lg:flex items-center gap-3 px-8 py-3 border border-gray-600 ml-4 hover:bg-lightHover hover:text-gray-900 duration-500"
+            className="hidden lg:flex items-center gap-3 px-8 py-3 border border-gray-600 ml-4 hover:bg-gray-100 duration-500"
           >
             Create a Product
           </a>
