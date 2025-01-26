@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useProductStore } from '../store/product';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Create = () => {
@@ -13,6 +14,7 @@ const Create = () => {
     description: '',
   });
 
+  const navigate = useNavigate();
   const { createProduct } = useProductStore();
 
   const handleNewProduct = async () => {
@@ -30,6 +32,7 @@ const Create = () => {
         pauseOnHover: true,
         draggable: true,
       });
+      navigate('/collections');
     } else {
       toast.error(message, {
         position: 'top-right',
@@ -98,10 +101,10 @@ const Create = () => {
               <option value="" disabled>
                 Select a category
               </option>
-              <option value="album">Album</option>
-              <option value="photcard">Photcard</option>
-              <option value="lightstick">Lightstick</option>
-              <option value="magazine">Magazine</option>
+              <option value="Album">Album</option>
+              <option value="Photcard">Photcard</option>
+              <option value="Lightstick">Lightstick</option>
+              <option value="Magazine">Magazine</option>
             </select>
           </div>
 

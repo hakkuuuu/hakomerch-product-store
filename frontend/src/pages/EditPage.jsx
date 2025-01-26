@@ -1,23 +1,23 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useProductStore } from "../store/product";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useProductStore } from '../store/product';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditPage = () => {
   const { products, editProduct } = useProductStore();
-  const { id } = useParams(); // Assuming you're using React Router for dynamic routing
+  const { id } = useParams();
   const navigate = useNavigate();
 
   // Find the product to edit
   const existingProduct = products.find((product) => product._id === id);
 
   const [form, setForm] = useState({
-    name: "",
-    price: "",
-    category: "",
-    description: "",
+    name: '',
+    price: '',
+    category: '',
+    description: '',
     image: null,
   });
 
@@ -54,26 +54,31 @@ const EditPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-  
+
     try {
       // Log form data before submitting
-      console.log("Form data before submission:", form);
-  
+      console.log('Form data before submission:', form);
+
       const response = await editProduct(id, form);
-  
+
       if (response.success) {
-        toast.success(response.message, { /* toast options */ });
-        navigate("/collections");
+        toast.success(response.message, {
+          /* toast options */
+        });
+        navigate('/collections');
       } else {
-        toast.error(response.message || "Failed to update the product", { /* toast options */ });
+        toast.error(response.message || 'Failed to update the product', {
+          /* toast options */
+        });
       }
     } catch (error) {
-      toast.error("An error occurred while updating the product.", { /* toast options */ });
+      toast.error('An error occurred while updating the product.', {
+        /* toast options */
+      });
     } finally {
       setIsLoading(false);
     }
   };
-  
 
   if (!existingProduct) {
     return <p>Product not found.</p>;
@@ -121,10 +126,10 @@ const EditPage = () => {
               <option value="" disabled>
                 Select a category
               </option>
-              <option value="album">Album</option>
-              <option value="photocard">Photocard</option>
-              <option value="lightstick">Lightstick</option>
-              <option value="magazine">Magazine</option>
+              <option value="Album">Album</option>
+              <option value="Photcard">Photcard</option>
+              <option value="Lightstick">Lightstick</option>
+              <option value="Magazine">Magazine</option>
             </select>
           </div>
 
@@ -157,11 +162,11 @@ const EditPage = () => {
             disabled={isLoading}
             className={`w-full py-3 transition ${
               isLoading
-                ? "bg-gray-600 text-gray-300 cursor-not-allowed"
-                : "bg-gray-900 text-white hover:bg-gray-700"
+                ? 'bg-gray-600 text-gray-300 cursor-not-allowed'
+                : 'bg-gray-900 text-white hover:bg-gray-700'
             }`}
           >
-            {isLoading ? "Saving Changes..." : "Save Changes"}
+            {isLoading ? 'Saving Changes...' : 'Save Changes'}
           </button>
         </form>
       </div>
