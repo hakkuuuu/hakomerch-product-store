@@ -18,13 +18,12 @@ export const useProductStore = create((set) => ({
             return { success: false, message: "Please provide all fields, including an image." };
         }
 
-        // Create FormData to handle the image upload
         const formData = new FormData();
         formData.append("name", name);
         formData.append("price", price);
         formData.append("category", category);
         formData.append("description", description);
-        formData.append("image", image); // Append the file object
+        formData.append("image", image);
 
         // Make an API request to create the product
         const res = await fetch("/api/products", {
@@ -67,6 +66,47 @@ export const useProductStore = create((set) => ({
         }));
 
         return { success: true, message: data.message };
+    },
+
+    editProduct: async (pid, updatedProduct) => {
+        const { name, price, category, image, description } = updatedProduct;
+
+        // Validate required fields
+        if (!name || !price || !category || !description) {
+            return { success: false, message: "Please provide all fields (image is optional)." };
+        }
+
+        // Create FormData to handle the image upload
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("price", price);
+        formData.append("category", category);
+        formData.append("description", description);
+
+        if (image) {
+            formData.append("image", image); // Add image only if it's updated
+        }
+
+        // Make an API request to update the product
+        const res = await fetch(`/api/products/${pid}`, {
+            method: "PUT",
+            body: formData, // Use FormData as the request body
+        });
+
+        const data = await res.json();
+
+        if (!data.success) {
+            return { success: false, message: data.message };
+        }
+
+        // Update the `products` state by replacing the edited product
+        set((state) => ({
+            products: state.products.map((product) =>
+                product._id === pid ? data.data : product
+            ),
+        }));
+
+        return { success: true, message: "Product updated successfully." };
     },
 
 }));

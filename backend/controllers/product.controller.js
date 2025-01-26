@@ -41,35 +41,32 @@ export const createProduct = async (req, res) => {
 // Update an Existing Product
 // ==============================
 export const updateProduct = async (req, res) => {
-    const { id } = req.params; // Extract the product ID from the request URL
-    const product = req.body; // Extract the updated product data from the request body
+    const { id } = req.params;
+    const product = req.body;
 
-    // Validate if the provided ID is a valid MongoDB ObjectId
+    // Validate the ObjectId
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ success: false, message: "Invalid Product Id" });
     }
 
-    // This is optional if you want to validate all required fields provided in the request body
-    // if (!product.name || !product.price || !product.image) {
-    //     return res.status(400).json({ success: false, message: "Please provide all required fields" });
-    // }
+    console.log("Request Body:", product); // Log the incoming data
+    console.log("Updating Product with ID:", id); // Log the ID being updated
 
     try {
-        // Find the product by ID and update it with the new data
         const updatedProduct = await Product.findByIdAndUpdate(id, product, { new: true });
 
-        // Check if the product was found and updated
         if (!updatedProduct) {
             return res.status(404).json({ success: false, message: "Product not found" });
         }
 
-        // Respond with the updated product
+        console.log("Updated Product:", updatedProduct); // Log the updated product
         res.status(200).json({ success: true, data: updatedProduct });
     } catch (error) {
-        console.error("Error in updating product:", error.message); // Log the error
-        res.status(500).json({ success: false, message: "Server Error" }); // Respond with a 500 error
+        console.error("Error in updating product:", error.message);
+        res.status(500).json({ success: false, message: "Server Error" });
     }
-}
+};
+
 
 // ==============================
 // Delete a Product
