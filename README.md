@@ -40,7 +40,6 @@ cd hakomerch-product-store
 cd .\backend\
 npm install
 
-cd FE
 npm .\frontend\
 npm install
 ```
@@ -59,11 +58,11 @@ Replace your_mongo_connection_string with your MongoDB connection string (e.g., 
 
 ```bash
 # Start the backend
-cd backend
+cd .\backend\
 npm run dev
 
 # Start the frontend
-cd ../frontend
+npm .\frontend\
 npm start
 
 The backend will run on http://localhost:5000, and the frontend will be available at http://localhost:5173.
