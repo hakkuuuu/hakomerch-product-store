@@ -102,7 +102,7 @@ const Create = () => {
                 Select a category
               </option>
               <option value="Album">Album</option>
-              <option value="Photcard">Photcard</option>
+              <option value="Photocard">Photocard</option>
               <option value="Lightstick">Lightstick</option>
               <option value="Magazine">Magazine</option>
             </select>
