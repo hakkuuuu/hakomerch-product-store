@@ -4,12 +4,13 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "10000:10000"
     environment:
       - NODE_ENV=production
-      - PORT=3000
+      - PORT=10000
       - MONGO_URI=${MONGO_URI}
       - UPLOADS_DIR=uploads/
+      - VITE_API_URL=${VITE_API_URL}
     volumes:
       - ./backend/uploads:/app/backend/uploads
     restart: unless-stopped 

@@ -8,18 +8,21 @@ WORKDIR /app
 COPY package*.json ./
 COPY frontend/package*.json ./frontend/
 
-# Install dependencies
+# Install dependencies (including dev dependencies for build)
 RUN npm install
-RUN cd frontend && npm install
+RUN cd frontend && npm install --production=false
 
 # Copy project files
 COPY . .
 
-# Build frontend
+# Build frontend with dev dependencies available
 RUN cd frontend && npm run build
 
+# Clean up dev dependencies
+RUN cd frontend && npm prune --production
+
 # Expose port
-EXPOSE 3000
+EXPOSE 10000
 
 # Start the application
 CMD ["npm", "start"] 
