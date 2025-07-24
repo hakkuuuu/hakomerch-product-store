@@ -9,8 +9,9 @@ export default function CollectionsCard({ product }) {
   const navigate = useNavigate();
   const { deleteProduct } = useProductStore();
 
-  const [isModalOpen, setModalOpen] = useState(false); // State to handle modal visibility
-  const [productToDelete, setProductToDelete] = useState(null); // Store product ID to delete
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+  const [imageError, setImageError] = useState(false);
 
   const handleEdit = () => {
     navigate(`/edit/${_id}`);
@@ -47,14 +48,21 @@ export default function CollectionsCard({ product }) {
     }
   };
 
-  const BASE_URL = `https://hakomerch-product-store.onrender.com`;
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  // Fallback image URL
+  const fallbackImage = "https://via.placeholder.com/800x600?text=Product+Image";
 
   return (
     <div className="bg-white shadow-md overflow-hidden hover:bg-gray-100">
       <img
-        src={`${BASE_URL}${image}`}
+        src={imageError ? fallbackImage : image}
         alt={name}
         className="w-[380px] h-72 object-cover"
+        onError={handleImageError}
+        loading="lazy"
       />
       <div className="p-4">
         <h2 className="text-lg text-gray-900 font-semibold mb-2">{name}</h2>
@@ -69,7 +77,7 @@ export default function CollectionsCard({ product }) {
           Edit
         </button>
         <button
-          onClick={() => confirmDelete(_id)} // Open modal for confirmation
+          onClick={() => confirmDelete(_id)}
           className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
         >
           Delete
