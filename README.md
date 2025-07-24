@@ -189,6 +189,71 @@ npm start
 - Minimized assets
 - Production-ready
 
+## 🐳 Docker Deployment
+
+### Local Docker Development
+1. **Build and run with Docker Compose**
+```bash
+# Build and start containers
+docker-compose up --build
+
+# Stop containers
+docker-compose down
+```
+
+2. **Build and run Docker image directly**
+```bash
+# Build image
+docker build -t hakomerch-store .
+
+# Run container
+docker run -p 3000:3000 --env-file .env hakomerch-store
+```
+
+## 🚀 Render Deployment
+
+### Prerequisites
+1. Create a [Render](https://render.com) account
+2. Fork/push this repository to your GitHub account
+
+### Deployment Steps
+
+1. **Create New Web Service**
+   - Go to Render Dashboard
+   - Click "New +" and select "Web Service"
+   - Connect your GitHub repository
+
+2. **Configure Web Service**
+   - Name: `hakomerch-product-store`
+   - Environment: `Docker`
+   - Branch: `main` (or your preferred branch)
+   - Region: Choose nearest to your users
+   - Instance Type: Choose based on your needs
+
+3. **Environment Variables**
+   Add the following environment variables:
+   ```
+   NODE_ENV=production
+   PORT=3000
+   MONGO_URI=your_mongodb_uri
+   UPLOADS_DIR=uploads/
+   ```
+
+4. **Deploy**
+   - Click "Create Web Service"
+   - Wait for build and deployment to complete
+
+### Continuous Deployment
+- Render automatically deploys when you push to your repository
+- Monitor builds in the Render dashboard
+- View logs and metrics in real-time
+
+### File Storage
+For uploaded files in production:
+1. Create a persistent disk in Render
+2. Mount it to `/app/backend/uploads`
+3. Update environment variables accordingly
+
 ## 🤝 Contributing
 
 1. Fork the repository
