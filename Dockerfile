@@ -8,15 +8,21 @@ WORKDIR /app
 COPY package*.json ./
 COPY frontend/package*.json ./frontend/
 
-# Install dependencies (including dev dependencies for build)
+# Install root dependencies
 RUN npm install
-RUN cd frontend && npm install --production=false
 
-# Copy project files
+# Install frontend dependencies
+WORKDIR /app/frontend
+RUN npm install
+
+# Build frontend
+RUN npm run build
+
+# Go back to root directory
+WORKDIR /app
+
+# Copy all project files
 COPY . .
-
-# Build frontend with dev dependencies available
-RUN cd frontend && npm run build
 
 # Clean up dev dependencies
 RUN cd frontend && npm prune --production
