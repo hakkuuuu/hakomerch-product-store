@@ -4,6 +4,9 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
+# Install global dependencies
+RUN npm install -g vite
+
 # Copy package files
 COPY package*.json ./
 COPY frontend/package*.json ./frontend/
@@ -13,16 +16,16 @@ RUN npm install
 
 # Install frontend dependencies
 WORKDIR /app/frontend
-RUN npm install
+RUN npm install --legacy-peer-deps
+
+# Copy all project files
+COPY . .
 
 # Build frontend
 RUN npm run build
 
 # Go back to root directory
 WORKDIR /app
-
-# Copy all project files
-COPY . .
 
 # Clean up dev dependencies
 RUN cd frontend && npm prune --production
