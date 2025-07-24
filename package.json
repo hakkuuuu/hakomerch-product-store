@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd frontend && npm install --legacy-peer-deps && NODE_ENV=production npm run build",
+    "build": "cd frontend && npm install && npm run build",
     "start": "cross-env NODE_ENV=production node backend/server.js",
     "seed": "node backend/config/seeder.js"
   },
@@ -23,9 +23,6 @@
     "nodemon": "^3.1.9"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.20",
-    "cross-env": "^7.0.3",
-    "postcss": "^8.5.1",
-    "tailwindcss": "^4.0.0"
+    "cross-env": "^7.0.3"
   }
 }
