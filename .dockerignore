@@ -12,4 +12,5 @@ README.md
 .vscode
 *.log
 backend/uploads/*
-!backend/uploads/.gitkeep 
+!backend/uploads/.gitkeep
+.DS_Store 

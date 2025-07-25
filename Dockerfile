@@ -4,24 +4,17 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy all package files first
 COPY package*.json ./
+COPY frontend/package*.json ./frontend/
+COPY backend/ ./backend/
 
 # Install root dependencies
 RUN npm install
 
-# Copy frontend package files
-COPY frontend/package*.json ./frontend/
-
-# Install frontend dependencies
+# Install and build frontend
 WORKDIR /app/frontend
 RUN npm install
-
-# Copy all project files
-COPY . .
-
-# Build frontend
-ENV NODE_ENV=production
 RUN npm run build
 
 # Go back to root directory
@@ -36,4 +29,4 @@ RUN npm prune --production && \
 EXPOSE 10000
 
 # Start the application
-CMD ["npm", "start"] 
+CMD ["node", "backend/server.js"] 
